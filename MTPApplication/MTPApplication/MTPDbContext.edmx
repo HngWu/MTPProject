@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MTPDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="packageId" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CountryCode">
+          <Key>
+            <PropertyRef Name="countryCode" />
+          </Key>
+          <Property Name="country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="countryCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Employee_No" />
+          </Key>
+          <Property Name="Employee_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="image" Type="image" />
+        </EntityType>
+        <EntityType Name="FlightReservation">
+          <Key>
+            <PropertyRef Name="reservationId" />
+          </Key>
+          <Property Name="reservationId" Type="int" Nullable="false" />
+          <Property Name="membershipId" Type="int" Nullable="false" />
+          <Property Name="flightId" Type="int" Nullable="false" />
+          <Property Name="ReservationDate" Type="date" Nullable="false" />
+          <Property Name="seat" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flights">
+          <Key>
+            <PropertyRef Name="FlightID" />
+          </Key>
+          <Property Name="FlightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlightNumber" Type="varchar" MaxLength="10" />
+          <Property Name="DepartureCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="ArrivalCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepartureDateTime" Type="datetime" />
+          <Property Name="ArrivalDateTime" Type="datetime" />
+          <Property Name="IsTransfer" Type="bit" />
+          <Property Name="TransferCountry" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HotelCountry">
+          <Key>
+            <PropertyRef Name="hotelId" />
+          </Key>
+          <Property Name="hotelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hotelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="countrCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="roomQuantity" Type="int" Nullable="false" />
+          <Property Name="roomPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="hotelClassId" Type="int" />
+        </EntityType>
+        <EntityType Name="Hotels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hotelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hotelClass" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Memberships">
+          <Key>
+            <PropertyRef Name="membershipId" />
+          </Key>
+          <Property Name="membershipId" Type="int" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateOfBirth" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phoneNumber" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packages">
+          <Key>
+            <PropertyRef Name="packageId" />
+          </Key>
+          <Property Name="packageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+          <Property Name="image" Type="image" Nullable="false" />
+          <Property Name="introduction" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MTPDatabase.dbo.RestaurantMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RestaurantMenu">
+          <Key>
+            <PropertyRef Name="restaurantID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Price" />
+          </Key>
+          <Property Name="restaurantID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="image" Type="image" />
+        </EntityType>
+        <EntityType Name="Restaurants">
+          <Key>
+            <PropertyRef Name="restaurantID" />
+          </Key>
+          <Property Name="restaurantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Restaurant_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country_Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hotelId" Type="int" />
+        </EntityType>
+        <EntityType Name="Schedules">
+          <Key>
+            <PropertyRef Name="scheduleId" />
+          </Key>
+          <Property Name="scheduleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="packageId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="startingDate" Type="date" Nullable="false" />
+          <Property Name="endingDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Comments_Packages">
+          <End Role="Packages" Type="Self.Packages" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="packageId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="packageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlightReservation_Flights">
+          <End Role="Flights" Type="Self.Flights" Multiplicity="1" />
+          <End Role="FlightReservation" Type="Self.FlightReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flights">
+              <PropertyRef Name="FlightID" />
+            </Principal>
+            <Dependent Role="FlightReservation">
+              <PropertyRef Name="flightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlightReservation_Memberships">
+          <End Role="Memberships" Type="Self.Memberships" Multiplicity="1" />
+          <End Role="FlightReservation" Type="Self.FlightReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memberships">
+              <PropertyRef Name="membershipId" />
+            </Principal>
+            <Dependent Role="FlightReservation">
+              <PropertyRef Name="membershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelCountry_CountryCode">
+          <End Role="CountryCode" Type="Self.CountryCode" Multiplicity="1" />
+          <End Role="HotelCountry" Type="Self.HotelCountry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryCode">
+              <PropertyRef Name="countryCode" />
+            </Principal>
+            <Dependent Role="HotelCountry">
+              <PropertyRef Name="countrCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelCountry_Hotels">
+          <End Role="Hotels" Type="Self.Hotels" Multiplicity="0..1" />
+          <End Role="HotelCountry" Type="Self.HotelCountry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HotelCountry">
+              <PropertyRef Name="hotelClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_No" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_restaurantMenu_Restaurants">
+          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
+          <End Role="RestaurantMenu" Type="Self.RestaurantMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurants">
+              <PropertyRef Name="restaurantID" />
+            </Principal>
+            <Dependent Role="RestaurantMenu">
+              <PropertyRef Name="restaurantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurants_HotelCountry">
+          <End Role="HotelCountry" Type="Self.HotelCountry" Multiplicity="0..1" />
+          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelCountry">
+              <PropertyRef Name="hotelId" />
+            </Principal>
+            <Dependent Role="Restaurants">
+              <PropertyRef Name="hotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedules_Packages">
+          <End Role="Packages" Type="Self.Packages" Multiplicity="1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="packageId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="packageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MTPDatabaseModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryCode" EntityType="Self.CountryCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlightReservation" EntityType="Self.FlightReservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flights" EntityType="Self.Flights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelCountry" EntityType="Self.HotelCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Memberships" EntityType="Self.Memberships" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurants" EntityType="Self.Restaurants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedules" EntityType="Self.Schedules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RestaurantMenu" EntityType="Self.RestaurantMenu" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RestaurantMenu].[restaurantID] AS [restaurantID], 
+    [RestaurantMenu].[Name] AS [Name], 
+    [RestaurantMenu].[Price] AS [Price], 
+    [RestaurantMenu].[image] AS [image]
+    FROM [dbo].[RestaurantMenu] AS [RestaurantMenu]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Comments_Packages" Association="Self.FK_Comments_Packages">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlightReservation_Flights" Association="Self.FK_FlightReservation_Flights">
+            <End Role="Flights" EntitySet="Flights" />
+            <End Role="FlightReservation" EntitySet="FlightReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlightReservation_Memberships" Association="Self.FK_FlightReservation_Memberships">
+            <End Role="Memberships" EntitySet="Memberships" />
+            <End Role="FlightReservation" EntitySet="FlightReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelCountry_CountryCode" Association="Self.FK_HotelCountry_CountryCode">
+            <End Role="CountryCode" EntitySet="CountryCode" />
+            <End Role="HotelCountry" EntitySet="HotelCountry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelCountry_Hotels" Association="Self.FK_HotelCountry_Hotels">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="HotelCountry" EntitySet="HotelCountry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_Employees" Association="Self.FK_Packages_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_restaurantMenu_Restaurants" Association="Self.FK_restaurantMenu_Restaurants">
+            <End Role="Restaurants" EntitySet="Restaurants" />
+            <End Role="RestaurantMenu" EntitySet="RestaurantMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurants_HotelCountry" Association="Self.FK_Restaurants_HotelCountry">
+            <End Role="HotelCountry" EntitySet="HotelCountry" />
+            <End Role="Restaurants" EntitySet="Restaurants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedules_Packages" Association="Self.FK_Schedules_Packages">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MTPDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="packageId" Type="Int32" Nullable="false" />
+          <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_Comments_Packages" FromRole="Comments" ToRole="Packages" />
+        </EntityType>
+        <EntityType Name="CountryCode">
+          <Key>
+            <PropertyRef Name="countryCode1" />
+          </Key>
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="countryCode1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HotelCountries" Relationship="Self.FK_HotelCountry_CountryCode" FromRole="CountryCode" ToRole="HotelCountry" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_No" />
+          </Key>
+          <Property Name="Employee_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Packages" Relationship="Self.FK_Packages_Employees" FromRole="Employees" ToRole="Packages" />
+        </EntityType>
+        <EntityType Name="FlightReservation">
+          <Key>
+            <PropertyRef Name="reservationId" />
+          </Key>
+          <Property Name="reservationId" Type="Int32" Nullable="false" />
+          <Property Name="membershipId" Type="Int32" Nullable="false" />
+          <Property Name="flightId" Type="Int32" Nullable="false" />
+          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="seat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_FlightReservation_Flights" FromRole="FlightReservation" ToRole="Flights" />
+          <NavigationProperty Name="Membership" Relationship="Self.FK_FlightReservation_Memberships" FromRole="FlightReservation" ToRole="Memberships" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="FlightID" />
+          </Key>
+          <Property Name="FlightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlightNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DepartureCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArrivalCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ArrivalDateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsTransfer" Type="Boolean" />
+          <Property Name="TransferCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FlightReservations" Relationship="Self.FK_FlightReservation_Flights" FromRole="Flights" ToRole="FlightReservation" />
+        </EntityType>
+        <EntityType Name="HotelCountry">
+          <Key>
+            <PropertyRef Name="hotelId" />
+          </Key>
+          <Property Name="hotelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="countrCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roomQuantity" Type="Int32" Nullable="false" />
+          <Property Name="roomPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="hotelClassId" Type="Int32" />
+          <NavigationProperty Name="CountryCode" Relationship="Self.FK_HotelCountry_CountryCode" FromRole="HotelCountry" ToRole="CountryCode" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelCountry_Hotels" FromRole="HotelCountry" ToRole="Hotels" />
+          <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurants_HotelCountry" FromRole="HotelCountry" ToRole="Restaurants" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hotelClass" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HotelCountries" Relationship="Self.FK_HotelCountry_Hotels" FromRole="Hotels" ToRole="HotelCountry" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="membershipId" />
+          </Key>
+          <Property Name="membershipId" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FlightReservations" Relationship="Self.FK_FlightReservation_Memberships" FromRole="Memberships" ToRole="FlightReservation" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="packageId" />
+          </Key>
+          <Property Name="packageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Packages" FromRole="Packages" ToRole="Comments" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Packages_Employees" FromRole="Packages" ToRole="Employees" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_Schedules_Packages" FromRole="Packages" ToRole="Schedules" />
+          <Property Name="cost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="restaurantID" />
+          </Key>
+          <Property Name="restaurantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Restaurant_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hotelId" Type="Int32" />
+          <NavigationProperty Name="HotelCountry" Relationship="Self.FK_Restaurants_HotelCountry" FromRole="Restaurants" ToRole="HotelCountry" />
+          <NavigationProperty Name="RestaurantMenus" Relationship="Self.FK_restaurantMenu_Restaurants" FromRole="Restaurants" ToRole="RestaurantMenu" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="scheduleId" />
+          </Key>
+          <Property Name="scheduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="packageId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="startingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="endingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_Schedules_Packages" FromRole="Schedules" ToRole="Packages" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="RestaurantMenu">
+          <Key>
+            <PropertyRef Name="restaurantID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Price" />
+          </Key>
+          <Property Name="restaurantID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_restaurantMenu_Restaurants" FromRole="RestaurantMenu" ToRole="Restaurants" />
+        </EntityType>
+        <Association Name="FK_Comments_Packages">
+          <End Role="Packages" Type="Self.Package" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="packageId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="packageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelCountry_CountryCode">
+          <End Role="CountryCode" Type="Self.CountryCode" Multiplicity="1" />
+          <End Role="HotelCountry" Type="Self.HotelCountry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryCode">
+              <PropertyRef Name="countryCode1" />
+            </Principal>
+            <Dependent Role="HotelCountry">
+              <PropertyRef Name="countrCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Packages" Type="Self.Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_No" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlightReservation_Flights">
+          <End Role="Flights" Type="Self.Flight" Multiplicity="1" />
+          <End Role="FlightReservation" Type="Self.FlightReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flights">
+              <PropertyRef Name="FlightID" />
+            </Principal>
+            <Dependent Role="FlightReservation">
+              <PropertyRef Name="flightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlightReservation_Memberships">
+          <End Role="Memberships" Type="Self.Membership" Multiplicity="1" />
+          <End Role="FlightReservation" Type="Self.FlightReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memberships">
+              <PropertyRef Name="membershipId" />
+            </Principal>
+            <Dependent Role="FlightReservation">
+              <PropertyRef Name="membershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelCountry_Hotels">
+          <End Role="Hotels" Type="Self.Hotel" Multiplicity="0..1" />
+          <End Role="HotelCountry" Type="Self.HotelCountry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HotelCountry">
+              <PropertyRef Name="hotelClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurants_HotelCountry">
+          <End Role="HotelCountry" Type="Self.HotelCountry" Multiplicity="0..1" />
+          <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelCountry">
+              <PropertyRef Name="hotelId" />
+            </Principal>
+            <Dependent Role="Restaurants">
+              <PropertyRef Name="hotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedules_Packages">
+          <End Role="Packages" Type="Self.Package" Multiplicity="1" />
+          <End Role="Schedules" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="packageId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="packageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_restaurantMenu_Restaurants">
+          <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="RestaurantMenu" Type="Self.RestaurantMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurants">
+              <PropertyRef Name="restaurantID" />
+            </Principal>
+            <Dependent Role="RestaurantMenu">
+              <PropertyRef Name="restaurantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MTPDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="CountryCodes" EntityType="Self.CountryCode" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="FlightReservations" EntityType="Self.FlightReservation" />
+          <EntitySet Name="Flights" EntityType="Self.Flight" />
+          <EntitySet Name="HotelCountries" EntityType="Self.HotelCountry" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="Memberships" EntityType="Self.Membership" />
+          <EntitySet Name="Packages" EntityType="Self.Package" />
+          <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+          <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="RestaurantMenus" EntityType="Self.RestaurantMenu" />
+          <AssociationSet Name="FK_Comments_Packages" Association="Self.FK_Comments_Packages">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelCountry_CountryCode" Association="Self.FK_HotelCountry_CountryCode">
+            <End Role="CountryCode" EntitySet="CountryCodes" />
+            <End Role="HotelCountry" EntitySet="HotelCountries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_Employees" Association="Self.FK_Packages_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlightReservation_Flights" Association="Self.FK_FlightReservation_Flights">
+            <End Role="Flights" EntitySet="Flights" />
+            <End Role="FlightReservation" EntitySet="FlightReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlightReservation_Memberships" Association="Self.FK_FlightReservation_Memberships">
+            <End Role="Memberships" EntitySet="Memberships" />
+            <End Role="FlightReservation" EntitySet="FlightReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelCountry_Hotels" Association="Self.FK_HotelCountry_Hotels">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="HotelCountry" EntitySet="HotelCountries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurants_HotelCountry" Association="Self.FK_Restaurants_HotelCountry">
+            <End Role="HotelCountry" EntitySet="HotelCountries" />
+            <End Role="Restaurants" EntitySet="Restaurants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedules_Packages" Association="Self.FK_Schedules_Packages">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_restaurantMenu_Restaurants" Association="Self.FK_restaurantMenu_Restaurants">
+            <End Role="Restaurants" EntitySet="Restaurants" />
+            <End Role="RestaurantMenu" EntitySet="RestaurantMenus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MTPDatabaseModelStoreContainer" CdmEntityContainer="MTPDbContext">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
+                <ScalarProperty Name="packageId" ColumnName="packageId" />
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryCodes">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.CountryCode">
+              <MappingFragment StoreEntitySet="CountryCode">
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="countryCode1" ColumnName="countryCode" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Employee_No" ColumnName="Employee_No" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlightReservations">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.FlightReservation">
+              <MappingFragment StoreEntitySet="FlightReservation">
+                <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+                <ScalarProperty Name="membershipId" ColumnName="membershipId" />
+                <ScalarProperty Name="flightId" ColumnName="flightId" />
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="seat" ColumnName="seat" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flights">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Flight">
+              <MappingFragment StoreEntitySet="Flights">
+                <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+                <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
+                <ScalarProperty Name="DepartureCountry" ColumnName="DepartureCountry" />
+                <ScalarProperty Name="ArrivalCountry" ColumnName="ArrivalCountry" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="IsTransfer" ColumnName="IsTransfer" />
+                <ScalarProperty Name="TransferCountry" ColumnName="TransferCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelCountries">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.HotelCountry">
+              <MappingFragment StoreEntitySet="HotelCountry">
+                <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+                <ScalarProperty Name="hotelName" ColumnName="hotelName" />
+                <ScalarProperty Name="countrCode" ColumnName="countrCode" />
+                <ScalarProperty Name="roomQuantity" ColumnName="roomQuantity" />
+                <ScalarProperty Name="roomPrice" ColumnName="roomPrice" />
+                <ScalarProperty Name="hotelClassId" ColumnName="hotelClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotels">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="hotelName" ColumnName="hotelName" />
+                <ScalarProperty Name="hotelClass" ColumnName="hotelClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Membership">
+              <MappingFragment StoreEntitySet="Memberships">
+                <ScalarProperty Name="membershipId" ColumnName="membershipId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Package">
+              <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="packageId" ColumnName="packageId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="introduction" ColumnName="introduction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurants">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurants">
+                <ScalarProperty Name="restaurantID" ColumnName="restaurantID" />
+                <ScalarProperty Name="Restaurant_name" ColumnName="Restaurant_name" />
+                <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
+                <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedules">
+                <ScalarProperty Name="scheduleId" ColumnName="scheduleId" />
+                <ScalarProperty Name="packageId" ColumnName="packageId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="startingDate" ColumnName="startingDate" />
+                <ScalarProperty Name="endingDate" ColumnName="endingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RestaurantMenus">
+            <EntityTypeMapping TypeName="MTPDatabaseModel.RestaurantMenu">
+              <MappingFragment StoreEntitySet="RestaurantMenu">
+                <ScalarProperty Name="restaurantID" ColumnName="restaurantID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

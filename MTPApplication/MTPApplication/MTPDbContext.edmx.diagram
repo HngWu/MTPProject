@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="be80cf810d9644f1aa6bf5d994e6e43a" Name="Diagram1" ZoomLevel="78">
+        <EntityTypeShape EntityType="MTPDatabaseModel.Comment" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.CountryCode" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.Employee" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.FlightReservation" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.Flight" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.HotelCountry" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.Hotel" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.Membership" Width="1.5" PointX="7.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.Package" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.Restaurant" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.Schedule" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.sysdiagram" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTPDatabaseModel.RestaurantMenu" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_Comments_Packages" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_HotelCountry_CountryCode" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_Packages_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_FlightReservation_Flights" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_FlightReservation_Memberships" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_HotelCountry_Hotels" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_Restaurants_HotelCountry" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_Schedules_Packages" ManuallyRouted="false" />
+        <AssociationConnector Association="MTPDatabaseModel.FK_restaurantMenu_Restaurants" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
