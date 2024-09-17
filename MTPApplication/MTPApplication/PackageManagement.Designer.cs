@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageManagement));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.packagegridview = new System.Windows.Forms.DataGridView();
             this.createbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.packagegridview)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -57,14 +57,15 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Package Management";
             // 
-            // dataGridView1
+            // packagegridview
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 148);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 290);
-            this.dataGridView1.TabIndex = 11;
+            this.packagegridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.packagegridview.Location = new System.Drawing.Point(12, 148);
+            this.packagegridview.Name = "packagegridview";
+            this.packagegridview.RowTemplate.Height = 33;
+            this.packagegridview.Size = new System.Drawing.Size(776, 290);
+            this.packagegridview.TabIndex = 11;
+            this.packagegridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.packagegridview_CellContentClick);
             // 
             // createbutton
             // 
@@ -81,14 +82,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.createbutton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.packagegridview);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
             this.Name = "PackageManagement";
             this.Text = "PackageManagement";
             this.Load += new System.EventHandler(this.PackageManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.packagegridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,7 +99,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView packagegridview;
         private System.Windows.Forms.Button createbutton;
     }
 }
