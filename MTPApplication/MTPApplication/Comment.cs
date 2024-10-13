@@ -17,6 +17,8 @@ namespace MTPApplication
         public int commentId { get; set; }
         public int packageId { get; set; }
         public string comment1 { get; set; }
+        public int rating { get; set; }
+        public Nullable<int> membershipId { get; set; }
     
         public virtual Package Package { get; set; }
     }

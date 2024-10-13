@@ -18,16 +18,25 @@ namespace MTPApplication
         public Membership()
         {
             this.FlightReservations = new HashSet<FlightReservation>();
+            this.HotelReservations = new HashSet<HotelReservation>();
+            this.PackageReservations = new HashSet<PackageReservation>();
+            this.RestaurantReservations = new HashSet<RestaurantReservation>();
         }
     
         public int membershipId { get; set; }
         public string password { get; set; }
         public string name { get; set; }
-        public string dateOfBirth { get; set; }
+        public System.DateTime dateOfBirth { get; set; }
         public int phoneNumber { get; set; }
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FlightReservation> FlightReservations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelReservation> HotelReservations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PackageReservation> PackageReservations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RestaurantReservation> RestaurantReservations { get; set; }
     }
 }

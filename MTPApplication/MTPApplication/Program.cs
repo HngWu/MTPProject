@@ -16,7 +16,7 @@ namespace MTPApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreatePackage());
+            Application.Run(new Login());
         }
     }
 }

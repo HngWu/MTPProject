@@ -12,18 +12,20 @@ namespace MTPApplication
     using System;
     using System.Collections.Generic;
     
-    public partial class FlightReservation
+    public partial class HotelReservation
     {
         public int reservationId { get; set; }
+        public int hotelId { get; set; }
         public int membershipId { get; set; }
-        public int flightId { get; set; }
-        public System.DateTime ReservationDate { get; set; }
-        public string seat { get; set; }
-        public decimal price { get; set; }
-        public string @class { get; set; }
-        public int people { get; set; }
+        public System.DateTime date { get; set; }
+        public System.DateTime startDate { get; set; }
+        public System.DateTime endDate { get; set; }
+        public int days { get; set; }
+        public int rooms { get; set; }
+        public decimal cost { get; set; }
+        public string comment { get; set; }
     
-        public virtual Flight Flight { get; set; }
+        public virtual HotelCountry HotelCountry { get; set; }
         public virtual Membership Membership { get; set; }
     }
 }

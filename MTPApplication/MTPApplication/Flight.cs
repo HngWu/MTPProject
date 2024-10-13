@@ -24,12 +24,15 @@ namespace MTPApplication
         public string FlightNumber { get; set; }
         public string DepartureCountry { get; set; }
         public string ArrivalCountry { get; set; }
-        public Nullable<System.DateTime> DepartureDateTime { get; set; }
-        public Nullable<System.DateTime> ArrivalDateTime { get; set; }
-        public Nullable<bool> IsTransfer { get; set; }
-        public string TransferCountry { get; set; }
+        public System.DateTime DepartureDateTime { get; set; }
+        public System.DateTime ArrivalDateTime { get; set; }
+        public bool IsTransfer { get; set; }
+        public Nullable<int> transferId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FlightReservation> FlightReservations { get; set; }
+        public virtual CountryCode CountryCode { get; set; }
+        public virtual CountryCode CountryCode1 { get; set; }
+        public virtual TransferFlight TransferFlight { get; set; }
     }
 }

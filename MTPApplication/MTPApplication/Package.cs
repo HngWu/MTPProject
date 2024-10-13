@@ -19,6 +19,7 @@ namespace MTPApplication
         {
             this.Comments = new HashSet<Comment>();
             this.Schedules = new HashSet<Schedule>();
+            this.PackageReservations = new HashSet<PackageReservation>();
         }
     
         public int packageId { get; set; }
@@ -27,11 +28,14 @@ namespace MTPApplication
         public byte[] image { get; set; }
         public string introduction { get; set; }
         public decimal cost { get; set; }
+        public int hits { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PackageReservation> PackageReservations { get; set; }
     }
 }

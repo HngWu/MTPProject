@@ -8,15 +8,19 @@
     <Property Name="packageId" Type="Int32" Nullable="false" />
     <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Package" Relationship="Self.FK_Comments_Packages" FromRole="Comments" ToRole="Packages" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="membershipId" Type="Int32" />
   </EntityType>
   <EntityType Name="CountryCode">
     <Key>
       <PropertyRef Name="countryCode1" />
     </Key>
     <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="countryCode1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="countryCode1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="HotelCountries" Relationship="Self.FK_HotelCountry_CountryCode" FromRole="CountryCode" ToRole="HotelCountry" />
+    <NavigationProperty Name="Flights" Relationship="MTPDatabaseModel.FK_Flights_CountryCode" FromRole="CountryCode" ToRole="Flight" />
+    <NavigationProperty Name="Flights1" Relationship="MTPDatabaseModel.FK_Flights_CountryCode1" FromRole="CountryCode" ToRole="Flight" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -43,20 +47,25 @@
     <Property Name="price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <NavigationProperty Name="Flight" Relationship="Self.FK_FlightReservation_Flights" FromRole="FlightReservation" ToRole="Flights" />
     <NavigationProperty Name="Membership" Relationship="Self.FK_FlightReservation_Memberships" FromRole="FlightReservation" ToRole="Memberships" />
+    <Property Name="class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="people" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Flight">
     <Key>
       <PropertyRef Name="FlightID" />
     </Key>
     <Property Name="FlightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FlightNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="DepartureCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ArrivalCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DepartureDateTime" Type="DateTime" Precision="3" />
-    <Property Name="ArrivalDateTime" Type="DateTime" Precision="3" />
-    <Property Name="IsTransfer" Type="Boolean" />
-    <Property Name="TransferCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlightNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DepartureCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ArrivalCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DepartureDateTime" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="ArrivalDateTime" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="IsTransfer" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="FlightReservations" Relationship="Self.FK_FlightReservation_Flights" FromRole="Flights" ToRole="FlightReservation" />
+    <Property Name="transferId" Type="Int32" />
+    <NavigationProperty Name="CountryCode" Relationship="MTPDatabaseModel.FK_Flights_CountryCode" FromRole="Flight" ToRole="CountryCode" />
+    <NavigationProperty Name="CountryCode1" Relationship="MTPDatabaseModel.FK_Flights_CountryCode1" FromRole="Flight" ToRole="CountryCode" />
+    <NavigationProperty Name="TransferFlight" Relationship="MTPDatabaseModel.FK_Flights_TransferFlights" FromRole="Flight" ToRole="TransferFlight" />
   </EntityType>
   <EntityType Name="HotelCountry">
     <Key>
@@ -64,13 +73,15 @@
     </Key>
     <Property Name="hotelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="hotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="countrCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="countrCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="roomQuantity" Type="Int32" Nullable="false" />
     <Property Name="roomPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="hotelClassId" Type="Int32" />
     <NavigationProperty Name="CountryCode" Relationship="Self.FK_HotelCountry_CountryCode" FromRole="HotelCountry" ToRole="CountryCode" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelCountry_Hotels" FromRole="HotelCountry" ToRole="Hotels" />
     <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurants_HotelCountry" FromRole="HotelCountry" ToRole="Restaurants" />
+    <Property Name="rating" Type="Int32" />
+    <NavigationProperty Name="HotelReservations" Relationship="MTPDatabaseModel.FK_HotelReservation_HotelCountry" FromRole="HotelCountry" ToRole="HotelReservation" />
   </EntityType>
   <EntityType Name="Hotel">
     <Key>
@@ -80,6 +91,8 @@
     <Property Name="hotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="hotelClass" Type="Int32" Nullable="false" />
     <NavigationProperty Name="HotelCountries" Relationship="Self.FK_HotelCountry_Hotels" FromRole="Hotels" ToRole="HotelCountry" />
+    <Property Name="hotelImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="hotelImageFolderPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Membership">
     <Key>
@@ -88,10 +101,13 @@
     <Property Name="membershipId" Type="Int32" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="dateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dateOfBirth" Type="DateTime" Nullable="false" />
     <Property Name="phoneNumber" Type="Int32" Nullable="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="FlightReservations" Relationship="Self.FK_FlightReservation_Memberships" FromRole="Memberships" ToRole="FlightReservation" />
+    <NavigationProperty Name="HotelReservations" Relationship="MTPDatabaseModel.FK_HotelReservation_Memberships" FromRole="Membership" ToRole="HotelReservation" />
+    <NavigationProperty Name="PackageReservations" Relationship="MTPDatabaseModel.FK_PackageReservation_Memberships" FromRole="Membership" ToRole="PackageReservation" />
+    <NavigationProperty Name="RestaurantReservations" Relationship="MTPDatabaseModel.FK_RestaurantReservation_Memberships" FromRole="Membership" ToRole="RestaurantReservation" />
   </EntityType>
   <EntityType Name="Package">
     <Key>
@@ -106,6 +122,8 @@
     <NavigationProperty Name="Employee" Relationship="Self.FK_Packages_Employees" FromRole="Packages" ToRole="Employees" />
     <NavigationProperty Name="Schedules" Relationship="Self.FK_Schedules_Packages" FromRole="Packages" ToRole="Schedules" />
     <Property Name="cost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="hits" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PackageReservations" Relationship="MTPDatabaseModel.FK_PackageReservation_Packages" FromRole="Package" ToRole="PackageReservation" />
   </EntityType>
   <EntityType Name="Restaurant">
     <Key>
@@ -117,6 +135,8 @@
     <Property Name="hotelId" Type="Int32" />
     <NavigationProperty Name="HotelCountry" Relationship="Self.FK_Restaurants_HotelCountry" FromRole="Restaurants" ToRole="HotelCountry" />
     <NavigationProperty Name="RestaurantMenus" Relationship="Self.FK_restaurantMenu_Restaurants" FromRole="Restaurants" ToRole="RestaurantMenu" />
+    <Property Name="totalSeats" Type="Int32" />
+    <NavigationProperty Name="RestaurantReservations" Relationship="MTPDatabaseModel.FK_RestaurantReservation_Restaurants" FromRole="Restaurant" ToRole="RestaurantReservation" />
   </EntityType>
   <EntityType Name="Schedule">
     <Key>
@@ -236,7 +256,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Schedules_Packages">
-    <End Role="Packages" Type="Self.Package" Multiplicity="1" />
+    <End Role="Packages" Type="Self.Package" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Schedules" Type="Self.Schedule" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Packages">
@@ -309,5 +331,263 @@
       <End Role="Restaurants" EntitySet="Restaurants" />
       <End Role="RestaurantMenu" EntitySet="RestaurantMenus" />
     </AssociationSet>
+    <EntitySet Name="Airplanes" EntityType="MTPDatabaseModel.Airplane" />
+    <EntitySet Name="HotelReservations" EntityType="MTPDatabaseModel.HotelReservation" />
+    <EntitySet Name="PackageReservations" EntityType="MTPDatabaseModel.PackageReservation" />
+    <EntitySet Name="RestaurantReservations" EntityType="MTPDatabaseModel.RestaurantReservation" />
+    <EntitySet Name="Seats" EntityType="MTPDatabaseModel.Seat" />
+    <EntitySet Name="TransferFlights" EntityType="MTPDatabaseModel.TransferFlight" />
+    <AssociationSet Name="FK_Seats_Seats" Association="MTPDatabaseModel.FK_Seats_Seats">
+      <End Role="Airplane" EntitySet="Airplanes" />
+      <End Role="Seat" EntitySet="Seats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_CountryCode" Association="MTPDatabaseModel.FK_Flights_CountryCode">
+      <End Role="CountryCode" EntitySet="CountryCodes" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_CountryCode1" Association="MTPDatabaseModel.FK_Flights_CountryCode1">
+      <End Role="CountryCode" EntitySet="CountryCodes" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_TransferFlights" Association="MTPDatabaseModel.FK_Flights_TransferFlights">
+      <End Role="TransferFlight" EntitySet="TransferFlights" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelReservation_HotelCountry" Association="MTPDatabaseModel.FK_HotelReservation_HotelCountry">
+      <End Role="HotelCountry" EntitySet="HotelCountries" />
+      <End Role="HotelReservation" EntitySet="HotelReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelReservation_Memberships" Association="MTPDatabaseModel.FK_HotelReservation_Memberships">
+      <End Role="Membership" EntitySet="Memberships" />
+      <End Role="HotelReservation" EntitySet="HotelReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageReservation_Memberships" Association="MTPDatabaseModel.FK_PackageReservation_Memberships">
+      <End Role="Membership" EntitySet="Memberships" />
+      <End Role="PackageReservation" EntitySet="PackageReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestaurantReservation_Memberships" Association="MTPDatabaseModel.FK_RestaurantReservation_Memberships">
+      <End Role="Membership" EntitySet="Memberships" />
+      <End Role="RestaurantReservation" EntitySet="RestaurantReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageReservation_Packages" Association="MTPDatabaseModel.FK_PackageReservation_Packages">
+      <End Role="Package" EntitySet="Packages" />
+      <End Role="PackageReservation" EntitySet="PackageReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestaurantReservation_Restaurants" Association="MTPDatabaseModel.FK_RestaurantReservation_Restaurants">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="RestaurantReservation" EntitySet="RestaurantReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferFlights_TransferFlights" Association="MTPDatabaseModel.FK_TransferFlights_TransferFlights">
+      <End Role="TransferFlight" EntitySet="TransferFlights" />
+      <End Role="TransferFlight1" EntitySet="TransferFlights" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Airplane">
+    <Key>
+      <PropertyRef Name="model" />
+    </Key>
+    <Property Name="model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="madeBy" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Seats" Relationship="MTPDatabaseModel.FK_Seats_Seats" FromRole="Airplane" ToRole="Seat" />
+  </EntityType>
+  <EntityType Name="HotelReservation">
+    <Key>
+      <PropertyRef Name="reservationId" />
+    </Key>
+    <Property Name="reservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hotelId" Type="Int32" Nullable="false" />
+    <Property Name="membershipId" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="days" Type="Int32" Nullable="false" />
+    <Property Name="rooms" Type="Int32" Nullable="false" />
+    <Property Name="cost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HotelCountry" Relationship="MTPDatabaseModel.FK_HotelReservation_HotelCountry" FromRole="HotelReservation" ToRole="HotelCountry" />
+    <NavigationProperty Name="Membership" Relationship="MTPDatabaseModel.FK_HotelReservation_Memberships" FromRole="HotelReservation" ToRole="Membership" />
+  </EntityType>
+  <EntityType Name="PackageReservation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="packageId" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="noOfParticipants" Type="Int32" Nullable="false" />
+    <Property Name="totalCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="membershipId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Membership" Relationship="MTPDatabaseModel.FK_PackageReservation_Memberships" FromRole="PackageReservation" ToRole="Membership" />
+    <NavigationProperty Name="Package" Relationship="MTPDatabaseModel.FK_PackageReservation_Packages" FromRole="PackageReservation" ToRole="Package" />
+  </EntityType>
+  <EntityType Name="RestaurantReservation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="restaurantId" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="seats" Type="Int32" Nullable="false" />
+    <Property Name="membershipId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Membership" Relationship="MTPDatabaseModel.FK_RestaurantReservation_Memberships" FromRole="RestaurantReservation" ToRole="Membership" />
+    <NavigationProperty Name="Restaurant" Relationship="MTPDatabaseModel.FK_RestaurantReservation_Restaurants" FromRole="RestaurantReservation" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="Seat">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="seat1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Airplane" Relationship="MTPDatabaseModel.FK_Seats_Seats" FromRole="Seat" ToRole="Airplane" />
+  </EntityType>
+  <EntityType Name="TransferFlight">
+    <Key>
+      <PropertyRef Name="transferId" />
+    </Key>
+    <Property Name="transferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transferNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartureCountry" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ArrivalCountry" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartureDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ArrivalDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Flights" Relationship="MTPDatabaseModel.FK_Flights_TransferFlights" FromRole="TransferFlight" ToRole="Flight" />
+    <NavigationProperty Name="TransferFlights1" Relationship="MTPDatabaseModel.FK_TransferFlights_TransferFlights" FromRole="TransferFlight" ToRole="TransferFlight1" />
+    <NavigationProperty Name="TransferFlight1" Relationship="MTPDatabaseModel.FK_TransferFlights_TransferFlights" FromRole="TransferFlight1" ToRole="TransferFlight" />
+  </EntityType>
+  <Association Name="FK_Seats_Seats">
+    <End Type="MTPDatabaseModel.Airplane" Role="Airplane" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.Seat" Role="Seat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airplane">
+        <PropertyRef Name="model" />
+      </Principal>
+      <Dependent Role="Seat">
+        <PropertyRef Name="model" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_CountryCode">
+    <End Type="MTPDatabaseModel.CountryCode" Role="CountryCode" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.Flight" Role="Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryCode">
+        <PropertyRef Name="countryCode1" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="ArrivalCountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_CountryCode1">
+    <End Type="MTPDatabaseModel.CountryCode" Role="CountryCode" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.Flight" Role="Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryCode">
+        <PropertyRef Name="countryCode1" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="DepartureCountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_TransferFlights">
+    <End Type="MTPDatabaseModel.TransferFlight" Role="TransferFlight" Multiplicity="0..1" />
+    <End Type="MTPDatabaseModel.Flight" Role="Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransferFlight">
+        <PropertyRef Name="transferId" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="transferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelReservation_HotelCountry">
+    <End Type="MTPDatabaseModel.HotelCountry" Role="HotelCountry" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.HotelReservation" Role="HotelReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelCountry">
+        <PropertyRef Name="hotelId" />
+      </Principal>
+      <Dependent Role="HotelReservation">
+        <PropertyRef Name="hotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelReservation_Memberships">
+    <End Type="MTPDatabaseModel.Membership" Role="Membership" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.HotelReservation" Role="HotelReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membership">
+        <PropertyRef Name="membershipId" />
+      </Principal>
+      <Dependent Role="HotelReservation">
+        <PropertyRef Name="membershipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageReservation_Memberships">
+    <End Type="MTPDatabaseModel.Membership" Role="Membership" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.PackageReservation" Role="PackageReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membership">
+        <PropertyRef Name="membershipId" />
+      </Principal>
+      <Dependent Role="PackageReservation">
+        <PropertyRef Name="membershipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestaurantReservation_Memberships">
+    <End Type="MTPDatabaseModel.Membership" Role="Membership" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.RestaurantReservation" Role="RestaurantReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membership">
+        <PropertyRef Name="membershipId" />
+      </Principal>
+      <Dependent Role="RestaurantReservation">
+        <PropertyRef Name="membershipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageReservation_Packages">
+    <End Type="MTPDatabaseModel.Package" Role="Package" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.PackageReservation" Role="PackageReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="packageId" />
+      </Principal>
+      <Dependent Role="PackageReservation">
+        <PropertyRef Name="packageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestaurantReservation_Restaurants">
+    <End Type="MTPDatabaseModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.RestaurantReservation" Role="RestaurantReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="restaurantID" />
+      </Principal>
+      <Dependent Role="RestaurantReservation">
+        <PropertyRef Name="restaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferFlights_TransferFlights">
+    <End Type="MTPDatabaseModel.TransferFlight" Role="TransferFlight" Multiplicity="1" />
+    <End Type="MTPDatabaseModel.TransferFlight" Role="TransferFlight1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TransferFlight">
+        <PropertyRef Name="transferId" />
+      </Principal>
+      <Dependent Role="TransferFlight1">
+        <PropertyRef Name="transferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

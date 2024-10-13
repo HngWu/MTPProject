@@ -4,6 +4,8 @@
     <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="MTPDatabaseModel.Comment">
         <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="membershipId" ColumnName="membershipId" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="commentId" ColumnName="commentId" />
           <ScalarProperty Name="packageId" ColumnName="packageId" />
           <ScalarProperty Name="comment1" ColumnName="comment" />
@@ -35,6 +37,8 @@
     <EntitySetMapping Name="FlightReservations">
       <EntityTypeMapping TypeName="MTPDatabaseModel.FlightReservation">
         <MappingFragment StoreEntitySet="FlightReservation">
+          <ScalarProperty Name="people" ColumnName="people" />
+          <ScalarProperty Name="class" ColumnName="class" />
           <ScalarProperty Name="reservationId" ColumnName="reservationId" />
           <ScalarProperty Name="membershipId" ColumnName="membershipId" />
           <ScalarProperty Name="flightId" ColumnName="flightId" />
@@ -47,6 +51,7 @@
     <EntitySetMapping Name="Flights">
       <EntityTypeMapping TypeName="MTPDatabaseModel.Flight">
         <MappingFragment StoreEntitySet="Flights">
+          <ScalarProperty Name="transferId" ColumnName="transferId" />
           <ScalarProperty Name="FlightID" ColumnName="FlightID" />
           <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
           <ScalarProperty Name="DepartureCountry" ColumnName="DepartureCountry" />
@@ -54,13 +59,13 @@
           <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
           <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
           <ScalarProperty Name="IsTransfer" ColumnName="IsTransfer" />
-          <ScalarProperty Name="TransferCountry" ColumnName="TransferCountry" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HotelCountries">
       <EntityTypeMapping TypeName="MTPDatabaseModel.HotelCountry">
         <MappingFragment StoreEntitySet="HotelCountry">
+          <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="hotelId" ColumnName="hotelId" />
           <ScalarProperty Name="hotelName" ColumnName="hotelName" />
           <ScalarProperty Name="countrCode" ColumnName="countrCode" />
@@ -73,6 +78,8 @@
     <EntitySetMapping Name="Hotels">
       <EntityTypeMapping TypeName="MTPDatabaseModel.Hotel">
         <MappingFragment StoreEntitySet="Hotels">
+          <ScalarProperty Name="hotelImageFolderPath" ColumnName="hotelImageFolderPath" />
+          <ScalarProperty Name="hotelImage" ColumnName="hotelImage" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="hotelName" ColumnName="hotelName" />
           <ScalarProperty Name="hotelClass" ColumnName="hotelClass" />
@@ -94,6 +101,7 @@
     <EntitySetMapping Name="Packages">
       <EntityTypeMapping TypeName="MTPDatabaseModel.Package">
         <MappingFragment StoreEntitySet="Packages">
+          <ScalarProperty Name="hits" ColumnName="hits" />
           <ScalarProperty Name="cost" ColumnName="cost" />
           <ScalarProperty Name="packageId" ColumnName="packageId" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -106,6 +114,7 @@
     <EntitySetMapping Name="Restaurants">
       <EntityTypeMapping TypeName="MTPDatabaseModel.Restaurant">
         <MappingFragment StoreEntitySet="Restaurants">
+          <ScalarProperty Name="totalSeats" ColumnName="totalSeats" />
           <ScalarProperty Name="restaurantID" ColumnName="restaurantID" />
           <ScalarProperty Name="Restaurant_name" ColumnName="Restaurant_name" />
           <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
@@ -142,6 +151,77 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Airplanes">
+      <EntityTypeMapping TypeName="MTPDatabaseModel.Airplane">
+        <MappingFragment StoreEntitySet="Airplanes">
+          <ScalarProperty Name="madeBy" ColumnName="madeBy" />
+          <ScalarProperty Name="model" ColumnName="model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HotelReservations">
+      <EntityTypeMapping TypeName="MTPDatabaseModel.HotelReservation">
+        <MappingFragment StoreEntitySet="HotelReservation">
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="rooms" ColumnName="rooms" />
+          <ScalarProperty Name="days" ColumnName="days" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="membershipId" ColumnName="membershipId" />
+          <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackageReservations">
+      <EntityTypeMapping TypeName="MTPDatabaseModel.PackageReservation">
+        <MappingFragment StoreEntitySet="PackageReservation">
+          <ScalarProperty Name="membershipId" ColumnName="membershipId" />
+          <ScalarProperty Name="totalCost" ColumnName="totalCost" />
+          <ScalarProperty Name="noOfParticipants" ColumnName="noOfParticipants" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="packageId" ColumnName="packageId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RestaurantReservations">
+      <EntityTypeMapping TypeName="MTPDatabaseModel.RestaurantReservation">
+        <MappingFragment StoreEntitySet="RestaurantReservation">
+          <ScalarProperty Name="membershipId" ColumnName="membershipId" />
+          <ScalarProperty Name="seats" ColumnName="seats" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="restaurantId" ColumnName="restaurantId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seats">
+      <EntityTypeMapping TypeName="MTPDatabaseModel.Seat">
+        <MappingFragment StoreEntitySet="Seats">
+          <ScalarProperty Name="class" ColumnName="class" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="seat1" ColumnName="seat" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransferFlights">
+      <EntityTypeMapping TypeName="MTPDatabaseModel.TransferFlight">
+        <MappingFragment StoreEntitySet="TransferFlights">
+          <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+          <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+          <ScalarProperty Name="ArrivalCountry" ColumnName="ArrivalCountry" />
+          <ScalarProperty Name="DepartureCountry" ColumnName="DepartureCountry" />
+          <ScalarProperty Name="transferNumber" ColumnName="transferNumber" />
+          <ScalarProperty Name="transferId" ColumnName="transferId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

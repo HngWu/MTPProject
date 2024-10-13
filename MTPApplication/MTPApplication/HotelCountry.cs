@@ -18,6 +18,7 @@ namespace MTPApplication
         public HotelCountry()
         {
             this.Restaurants = new HashSet<Restaurant>();
+            this.HotelReservations = new HashSet<HotelReservation>();
         }
     
         public int hotelId { get; set; }
@@ -26,10 +27,13 @@ namespace MTPApplication
         public int roomQuantity { get; set; }
         public decimal roomPrice { get; set; }
         public Nullable<int> hotelClassId { get; set; }
+        public Nullable<int> rating { get; set; }
     
         public virtual CountryCode CountryCode { get; set; }
         public virtual Hotel Hotel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Restaurant> Restaurants { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelReservation> HotelReservations { get; set; }
     }
 }

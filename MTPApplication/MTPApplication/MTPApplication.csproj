@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Airplane.cs">
+      <DependentUpon>MTPDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Comment.cs">
       <DependentUpon>MTPDbContext.tt</DependentUpon>
     </Compile>
@@ -81,6 +84,9 @@
       <DependentUpon>MTPDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="HotelCountry.cs">
+      <DependentUpon>MTPDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelReservation.cs">
       <DependentUpon>MTPDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -116,6 +122,15 @@
     <Compile Include="PackageManagement.Designer.cs">
       <DependentUpon>PackageManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="PackageReservation.cs">
+      <DependentUpon>MTPDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PreviewImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreviewImage.Designer.cs">
+      <DependentUpon>PreviewImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurant.cs">
@@ -124,7 +139,13 @@
     <Compile Include="RestaurantMenu.cs">
       <DependentUpon>MTPDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="RestaurantReservation.cs">
+      <DependentUpon>MTPDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Schedule.cs">
+      <DependentUpon>MTPDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Seat.cs">
       <DependentUpon>MTPDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="storeimage.cs">
@@ -136,6 +157,9 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>MTPDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransferFlight.cs">
+      <DependentUpon>MTPDbContext.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CreatePackage.resx">
       <DependentUpon>CreatePackage.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackageManagement.resx">
       <DependentUpon>PackageManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewImage.resx">
+      <DependentUpon>PreviewImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -161,6 +188,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MTPDbContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="MTPDbContext.edmx.diagram">
       <DependentUpon>MTPDbContext.edmx</DependentUpon>
     </None>

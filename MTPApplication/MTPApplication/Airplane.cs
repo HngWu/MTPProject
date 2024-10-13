@@ -12,21 +12,18 @@ namespace MTPApplication
     using System;
     using System.Collections.Generic;
     
-    public partial class Hotel
+    public partial class Airplane
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Hotel()
+        public Airplane()
         {
-            this.HotelCountries = new HashSet<HotelCountry>();
+            this.Seats = new HashSet<Seat>();
         }
     
-        public int id { get; set; }
-        public string hotelName { get; set; }
-        public int hotelClass { get; set; }
-        public byte[] hotelImage { get; set; }
-        public string hotelImageFolderPath { get; set; }
+        public string model { get; set; }
+        public string madeBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HotelCountry> HotelCountries { get; set; }
+        public virtual ICollection<Seat> Seats { get; set; }
     }
 }

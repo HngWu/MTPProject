@@ -40,9 +40,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(15, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(94, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(114, 62);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -51,40 +52,48 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(250, 31);
+            this.label3.Location = new System.Drawing.Point(377, 46);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(284, 31);
             this.label3.TabIndex = 10;
             this.label3.Text = "Package Management";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // packagegridview
             // 
+            this.packagegridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.packagegridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.packagegridview.Location = new System.Drawing.Point(12, 148);
+            this.packagegridview.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.packagegridview.Location = new System.Drawing.Point(0, 212);
+            this.packagegridview.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.packagegridview.Name = "packagegridview";
             this.packagegridview.RowTemplate.Height = 33;
-            this.packagegridview.Size = new System.Drawing.Size(776, 290);
+            this.packagegridview.Size = new System.Drawing.Size(1108, 560);
             this.packagegridview.TabIndex = 11;
             this.packagegridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.packagegridview_CellContentClick);
             // 
             // createbutton
             // 
-            this.createbutton.Location = new System.Drawing.Point(680, 105);
+            this.createbutton.Location = new System.Drawing.Point(927, 139);
+            this.createbutton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.createbutton.Name = "createbutton";
-            this.createbutton.Size = new System.Drawing.Size(107, 34);
+            this.createbutton.Size = new System.Drawing.Size(166, 47);
             this.createbutton.TabIndex = 12;
             this.createbutton.Text = "Create";
             this.createbutton.UseVisualStyleBackColor = true;
+            this.createbutton.Click += new System.EventHandler(this.createbutton_Click);
             // 
             // PackageManagement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1108, 772);
             this.Controls.Add(this.createbutton);
             this.Controls.Add(this.packagegridview);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "PackageManagement";
             this.Text = "PackageManagement";
             this.Load += new System.EventHandler(this.PackageManagement_Load);

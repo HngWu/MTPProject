@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="MTPApplication.MTPDbContext" Collapsed="true">
+    <Position X="3" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAFAAAAAQAIEAAgAAAAAAGEAAAAAACAAAEgAAIAA=</HashCode>
+      <FileName>MTPDbContext.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Comment">
+    <Position X="1" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAASAAAAAAAAAAAAAAoAA=</HashCode>
+      <FileName>Comment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.CountryCode">
+    <Position X="13" Y="9.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAEAAAAACAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>CountryCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Employee">
+    <Position X="4.75" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABCCAAAIAAAAAAAAABEAAAAAACAABAAAAAAAA=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Flight">
+    <Position X="0.75" Y="9.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAAAAAAAAAMAAACAACAAAAAkAAAAAgAAAAA=</HashCode>
+      <FileName>Flight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.FlightReservation">
+    <Position X="1.5" Y="14.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAEAgABAAABAAAAAAAAAQAAAAAAAAAAAIAAAgAA=</HashCode>
+      <FileName>FlightReservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Hotel">
+    <Position X="17" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Hotel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.HotelCountry">
+    <Position X="13.25" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CSCAAFAAAAAAAAEAAAAAAAAAACAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HotelCountry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Membership">
+    <Position X="5.5" Y="13.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAgAAAAAAAAAEAEAAAAAAAAIgAAAAA=</HashCode>
+      <FileName>Membership.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Package">
+    <Position X="4.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAGEAUAAAAAAIAAAAAoAA=</HashCode>
+      <FileName>Package.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Restaurant">
+    <Position X="17" Y="9" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AACAQAAAAAEAAAAAAAAAAAAAAAAABAAACAAAAAAABAA=</HashCode>
+      <FileName>Restaurant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.RestaurantMenu">
+    <Position X="18" Y="12.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAQAAAAAAAAAAAAQAEAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>RestaurantMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.Schedule">
+    <Position X="9" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQQAAAAAAUAAAAgAAAAAAAgAA=</HashCode>
+      <FileName>Schedule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPApplication.sysdiagram" Collapsed="true">
+    <Position X="1.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAIAAAAAAAAAAAAAAAQAAAFAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sysdiagram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

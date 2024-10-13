@@ -38,5 +38,11 @@ namespace MTPApplication
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<RestaurantMenu> RestaurantMenus { get; set; }
+        public virtual DbSet<Airplane> Airplanes { get; set; }
+        public virtual DbSet<HotelReservation> HotelReservations { get; set; }
+        public virtual DbSet<PackageReservation> PackageReservations { get; set; }
+        public virtual DbSet<RestaurantReservation> RestaurantReservations { get; set; }
+        public virtual DbSet<Seat> Seats { get; set; }
+        public virtual DbSet<TransferFlight> TransferFlights { get; set; }
     }
 }

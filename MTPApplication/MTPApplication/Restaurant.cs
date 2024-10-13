@@ -18,15 +18,19 @@ namespace MTPApplication
         public Restaurant()
         {
             this.RestaurantMenus = new HashSet<RestaurantMenu>();
+            this.RestaurantReservations = new HashSet<RestaurantReservation>();
         }
     
         public int restaurantID { get; set; }
         public string Restaurant_name { get; set; }
         public string Country_Code { get; set; }
         public Nullable<int> hotelId { get; set; }
+        public Nullable<int> totalSeats { get; set; }
     
         public virtual HotelCountry HotelCountry { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RestaurantMenu> RestaurantMenus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RestaurantReservation> RestaurantReservations { get; set; }
     }
 }

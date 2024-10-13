@@ -12,25 +12,24 @@ namespace MTPApplication
     using System;
     using System.Collections.Generic;
     
-    public partial class CountryCode
+    public partial class TransferFlight
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CountryCode()
+        public TransferFlight()
         {
-            this.HotelCountries = new HashSet<HotelCountry>();
             this.Flights = new HashSet<Flight>();
-            this.Flights1 = new HashSet<Flight>();
         }
     
-        public string country { get; set; }
-        public string countryCode1 { get; set; }
-        public string city { get; set; }
+        public int transferId { get; set; }
+        public string transferNumber { get; set; }
+        public string DepartureCountry { get; set; }
+        public string ArrivalCountry { get; set; }
+        public System.DateTime DepartureDateTime { get; set; }
+        public System.DateTime ArrivalDateTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HotelCountry> HotelCountries { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Flight> Flights { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Flight> Flights1 { get; set; }
+        public virtual TransferFlight TransferFlights1 { get; set; }
+        public virtual TransferFlight TransferFlight1 { get; set; }
     }
 }
